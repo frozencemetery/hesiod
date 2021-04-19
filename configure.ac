@@ -29,16 +29,16 @@ AC_PROG_LIBTOOL
 # Checks for libraries.
 hesiod_save_LIBS="$LIBS"
 LIBS=
-AC_ARG_WITH([libidn],
-  [AS_HELP_STRING([--with-libidn], [Support IDN (needs GNU libidn) @<:@check@:>@])],
-  [with_libidn="$withval"],
-  [with_libidn="check"])
-AS_IF([test x"$with_libidn" != xno],
-  [AC_SEARCH_LIBS([stringprep_check_version], [idn],
-    [AC_DEFINE([HAVE_LIBIDN], [1], [Define if libidn is available.])],
-    [AS_IF([test x"$with_idn" = xcheck],
-      [AC_MSG_WARN([Unable to find libidn.])],
-      [AC_MSG_ERROR([--with-libidn was given but libidn was not found.])])])])
+AC_ARG_WITH([libidn2],
+  [AS_HELP_STRING([--with-libidn2], [Support IDN2 (needs libidn2) @<:@check@:>@])],
+  [with_libidn2="$withval"],
+  [with_libidn2="check"])
+AS_IF([test x"$with_libidn2" != xno],
+  [AC_SEARCH_LIBS([idn2_to_ascii_8z], [idn2],
+    [AC_DEFINE([HAVE_LIBIDN2], [1], [Define if libidn2 is available.])],
+    [AS_IF([test x"$with_idn2" = xcheck],
+      [AC_MSG_WARN([Unable to find libidn2.])],
+      [AC_MSG_ERROR([--with-libidn2 was given but libidn2 was not found.])])])])
 
 AC_CHECK_LIB([resolv], [res_mkquery], [], [
     AC_MSG_CHECKING([if res_mkquery is provided by libresolv with mangled symbols])
